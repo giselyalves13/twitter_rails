@@ -1,0 +1,39 @@
+<%= form_with(model: tweet, local: true) do |form| %>
+  <% if tweet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+      <ul>
+      <% tweet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<!-- 
+  <div class="field">
+    <%= form.label :user %>
+     <%= form.text_field :user %> como pegar o usuário logado? -->
+  <!-- </div> -->
+
+  <!-- <div class="field"> -->
+    <!-- <%= form.label :user_img %> -->
+    <!-- <%= form.text_field :user_img %> como pegar o usuário logado? -->
+  <!-- </div> -->
+  <div class="row form-group">
+    <div class="col-md-6">
+      <div class="field">
+        <!-- # <%= form.text_area :content, cols: "50", placeholder: "Eat some brains!" %>  -->
+        <textarea class="form-control" cols="50" placeholder="Eat some brains!" name="tweet[content]" id="tweet_content"></textarea>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="actions">
+        <!-- # <%= form.submit %> -->
+        <input class="btn btn-light" type="submit" name="commit" value="Postar!" data-disable-with="Criar Tweet">
+      </div>
+    </div>
+  </div>
+  
+    
+<% end %>

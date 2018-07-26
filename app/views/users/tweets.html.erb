@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p>
 
 <h1>Tweets</h1>
 
@@ -30,3 +30,41 @@
 <br>
 
 <%= link_to 'New Tweet', new_tweet_path %>
+ -->
+
+ <p id="notice"><%= notice %></p>
+
+  <div id="tweets">
+  
+  <% @tweets.each do |tweet| %>
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-1">
+            <%= image_tag User.find_by(id: tweet.user_id).user_img %>
+          </div>
+          <div class="col-md-4">
+           <%="@"+User.find_by(id: tweet.user_id).user %>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8">
+            <%= tweet.content %>
+          </div>
+          <div class="col-md-4">
+            <%= link_to 'Show', tweet %>
+            <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+            
+        </div>
+
+      </div>
+    </div>
+    <% end %>
+  
+</div>

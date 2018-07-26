@@ -32,7 +32,7 @@ class UsersController < ApplicationController
       if @user.save
         format.html { redirect_to @user, notice: 'Usuário criado com sucesso!' }
         format.json { render :show, status: :created, location: @user }
-        sign_in(@user)
+        sign_in
 
       else
         format.html { render :new }

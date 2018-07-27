@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 	before_action :block_access, except: [:destroy]
 
-	def new
+	def new 
 	end
 
 	def create 
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 			sign_in
 			redirect_to tweets_path
 		else
-			render action: :new              
+			redirect_to sessions_new_path, notice: 'Falha na autenticação'
 	    end
 	end
 

@@ -7,6 +7,6 @@ class User < ApplicationRecord
 	validates :user, presence: true, length: {maximum: 50}, uniqueness: {case_sensitive: false}
  	validates :password_digest, confirmation: true, presence: true, length: {minimum: 4}
  	validates :password_confirmation, presence: true 
-  before_save { self.user = user.downcase }
+  	before_save { self.user = user.downcase }
 
 end

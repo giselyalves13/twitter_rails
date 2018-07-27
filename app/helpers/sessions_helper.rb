@@ -5,8 +5,6 @@ module SessionsHelper
     end
 
     def current_user
-		p session[:user_id]
-		p 'secao'
 		@current_user ||= User.find_by(id: session[:user_id])
 	end
 
@@ -21,7 +19,6 @@ module SessionsHelper
 	end
 
 	def sign_out
-		p 'sing out AAAAAAA'
 	    session.delete(:user_id)
     	@current_user = nil
 	end

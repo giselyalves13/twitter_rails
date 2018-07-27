@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 	def correct_user?(user_id=params[:id])
 		user = User.find(user_id)
 		unless current_user == user
-			redirect_to root_path, notice: 'Não é possível deletar tweet de outros usuários'
+			redirect_to root_path, notice: 'Não é possível prosseguir'
 		end
 	end
 	

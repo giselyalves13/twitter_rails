@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :set_tweet, only: [:show, :edit, :update, :destroy]
+  before_action :set_tweet, only: [:show, :destroy]
   before_action :authorize
   # before_action :correct_user?(@tweet.user_id), only: [:edit, :update, :destroy]
 
@@ -19,36 +19,14 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
-  # GET /tweets/1/edit
-  def edit
-  end
-
   # POST /tweets
   # POST /tweets.json
   def create
     @tweet = current_user.tweets.create(tweet_params)
-    respond_to do |format|
-      if @tweet.save
-        format.html { redirect_to tweets_path, notice: 'Tweet was successfully created.' }
-        format.json { render :show, status: :created, location: tweets_path }
-      else
-        format.html { render :new }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /tweets/1
-  # PATCH/PUT /tweets/1.json
-  def update
-    respond_to do |format|
-      if @tweet.update(tweet_params)
-        format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tweet }
-      else
-        format.html { render :edit }
-        format.json { render json: @tweet.errors, status: :unprocessable_entity }
-      end
+    if @tweet.save
+      redirect_to tweets_path, notice: 'Tweet was successfully created.' 
+    else
+      render :new
     end
   end
 
@@ -57,10 +35,7 @@ class TweetsController < ApplicationController
   def destroy
     unless correct_user?(@tweet.user_id)
       @tweet.destroy
-      respond_to do |format|
-        format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
-        format.json { head :no_content }
-      end
+      redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
     end
   end
 

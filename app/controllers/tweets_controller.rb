@@ -17,6 +17,7 @@ class TweetsController < ApplicationController
   # GET /tweets/new
   def new
     @tweet = Tweet.new
+    redirect_to tweets_path
   end
 
   # POST /tweets
@@ -26,7 +27,9 @@ class TweetsController < ApplicationController
     if @tweet.save
       redirect_to tweets_path, notice: 'Tweet was successfully created.' 
     else
-      render :new
+      @tweet.errors.full_messages.each do |message|
+        redirect_to tweets_path, notice: message
+      end
     end
   end
 

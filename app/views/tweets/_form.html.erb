@@ -1,4 +1,4 @@
-<%= form_with(model: tweet, local: true) do |form| %>
+<%= form_with(model: tweet, local: true, :remote => true) do |form| %>
   
   <% if tweet.errors.any? %>
     <div id="error_explanation">
@@ -20,7 +20,7 @@
 
     <div class="col-md-6">
       <div class="actions">
-        <input class="btn btn-light" type="submit" name="commit" value="Postar!" data-disable-with="Criar Tweet">
+        <input class="btn btn-light" type="submit" name="commit" value="Postar!">
       </div>
     </div>
   </div>

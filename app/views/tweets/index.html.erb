@@ -7,6 +7,7 @@
   <% @tweets.each do |tweet| %>
     
     <div class="card">
+
       <div class="card-header">
         <div class="row">
           <div class="col-md-1">
@@ -14,11 +15,10 @@
           </div>
           <div class="col-md-4">
            <%="@"+User.find_by(id: tweet.user_id).user %>
-
           </div>
         </div>
-
       </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">
@@ -26,13 +26,11 @@
           </div>
           <div class="col-md-4">
             <%= link_to 'Show', tweet %>
-            <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Destroy', tweet, method: :delete %>
           </div>
-            
         </div>
-
       </div>
     </div>
-    <% end %>
+  <% end %>
   
 </div>

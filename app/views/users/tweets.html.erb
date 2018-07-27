@@ -1,44 +1,10 @@
-<!-- <p id="notice"><%= notice %></p>
+<p id="notice"><%= notice %></p>
 
-<h1>Tweets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>User img</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tweets.each do |tweet| %>
-      <tr>
-        <td><%= User.find_by(id: tweet.user_id).user %></td>
-        <td><%= User.find_by(id: tweet.user_id).user_img %></td>
-        <td><%= tweet.content %></td>
-        <td><%= link_to 'Show', tweet %></td>
-        <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
-        <td><%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= current_user.user %>
-
-<br>
-
-<%= link_to 'New Tweet', new_tweet_path %>
- -->
-
- <p id="notice"><%= notice %></p>
-
-  <div id="tweets">
+<div id="tweets">
   
   <% @tweets.each do |tweet| %>
-    
     <div class="card">
+
       <div class="card-header">
         <div class="row">
           <div class="col-md-1">
@@ -46,11 +12,10 @@
           </div>
           <div class="col-md-4">
            <%="@"+User.find_by(id: tweet.user_id).user %>
-
           </div>
         </div>
-
       </div>
+
       <div class="card-body">
         <div class="row">
           <div class="col-md-8">
@@ -60,11 +25,9 @@
             <%= link_to 'Show', tweet %>
             <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' } %>
           </div>
-            
         </div>
-
       </div>
     </div>
-    <% end %>
+  <% end %>
   
 </div>

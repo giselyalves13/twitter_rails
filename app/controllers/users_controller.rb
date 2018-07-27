@@ -33,7 +33,6 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'Usuário criado com sucesso!' }
         format.json { render :show, status: :created, location: @user }
         sign_in
-
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -84,4 +83,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:user, :password, :user_img)
     end
+    
 end

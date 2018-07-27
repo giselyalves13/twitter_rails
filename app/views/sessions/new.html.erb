@@ -3,7 +3,6 @@
     <%= f.label 'Usuário:' %><br />
     <%= f.text_field :user, autofocus: true %>
   </div>
-  
   <div class="field">
     <%= f.label 'Senha' %><br />
     <%= f.password_field :password_digest, autocomplete: "off" %>
@@ -11,6 +10,6 @@
   <div class="actions">
     <%= f.submit "Log in" %>
   </div>
-<p>Novo usuário? <%= link_to "Crie uma conta!", new_user_path %></p>
+  <p>Novo usuário? <%= link_to "Crie uma conta!", new_user_path %></p>
 <% end %>
 

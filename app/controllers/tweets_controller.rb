@@ -1,6 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :edit, :update, :destroy]
   before_action :authorize
+  # before_action :correct_user?(@tweet.user_id), only: [:edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -25,7 +26,6 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    # @tweet = Tweet.new()
     @tweet = current_user.tweets.create(tweet_params)
     respond_to do |format|
       if @tweet.save
@@ -55,10 +55,12 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @tweet.destroy
-    respond_to do |format|
-      format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
-      format.json { head :no_content }
+    unless correct_user?(@tweet.user_id)
+      @tweet.destroy
+      respond_to do |format|
+        format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -72,4 +74,5 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:content)
     end
+    
 end

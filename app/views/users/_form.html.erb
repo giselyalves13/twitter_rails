@@ -23,11 +23,16 @@
   </div>
 
   <div class="field">
+    <%= form.label 'Confirme a senha:' %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+
+  <div class="field">
     <%= form.label 'Imagem:' %>
     <%= form.text_field :user_img %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+       <%= form.submit %>
   </div>
 <% end %>

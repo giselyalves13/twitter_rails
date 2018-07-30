@@ -56,3 +56,21 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+#Trailblazer
+gem "trailblazer-operation"
+gem "rspec"
+gem "trailblazer"
+gem "activerecord"
+gem "sqlite3"
+gem "dry-validation"
+gem "simple_form"
+gem "trailblazer-rails"
+gem "trailblazer-cells"
+gem "cells-rails"
+gem "cells-slim"
+group :test do
+  gem "rspec-rails"
+  gem "capybara"
+end
+

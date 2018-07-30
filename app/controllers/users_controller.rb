@@ -1,3 +1,5 @@
+require_relative "../concepts/user/contract/create"
+
 class UsersController < ApplicationController
   before_action :authorize, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -15,9 +17,17 @@ class UsersController < ApplicationController
   end
 
   # GET /users/new
+  #Trailblazer
   def new
-    @user = User.new
+    run User::Create::Present
+    render cell(User::Cell::New, @form), layout: false
   end
+
+  # def new
+  #   @user = User.new
+  # end
+
+
 
   # GET /users/1/edit
   def edit
@@ -25,15 +35,23 @@ class UsersController < ApplicationController
 
   # POST /users
   # POST /users.json
+  #Trailblazer
   def create
-    @user = User.new(user_params)
-    if @user.save
-      redirect_to root_path, notice: 'Usuário criado com sucesso!'
-      sign_in
-    else
-      render :new
-    end  
-  end
+    run User::Create do |result|
+      return redirect_to root_path
+    end
+
+    render cell(User::Cell::New, @form), layout: false
+  end 
+  # def create
+  #   @user = User.new(user_params)
+  #   if @user.save
+  #     redirect_to root_path, notice: 'Usuário criado com sucesso!'
+  #     sign_in
+  #   else
+  #     render :new
+  #   end  
+  # end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json

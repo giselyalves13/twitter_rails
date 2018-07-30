@@ -1,0 +1,19 @@
+.row.new
+  h1 New User
+
+  = simple_form_for model do |f|
+    .row
+      .col-sm-12
+        = f.input :user, placeholder: "User", label: false
+    .row
+      .col-sm-12
+        = f.input :password, placeholder: "Password", label: false
+    .row
+      .col-sm-12
+        = f.input :password_confirmation, placeholder: "Password Confirmation", label: false
+    .row
+      .col-sm-12
+        = f.input :user_img, placeholder: "Image link", label: false
+    .row
+      .col-sm-12
+        = f.submit 'Create User'

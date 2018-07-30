@@ -58,19 +58,21 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #Trailblazer
-gem "trailblazer-operation"
+# gem "trailblazer-operation"
 gem "rspec"
 gem "trailblazer"
-gem "activerecord"
-gem "sqlite3"
-gem "dry-validation"
+# gem "activerecord"
+# gem "sqlite3"
+gem "dry-validation", '~> 0.11.1'
 gem "simple_form"
 gem "trailblazer-rails"
 gem "trailblazer-cells"
 gem "cells-rails"
 gem "cells-slim"
+# gem 'reform'
+# gem 'reform-rails'
 group :test do
   gem "rspec-rails"
-  gem "capybara"
+#   gem "capybara"
 end
 

@@ -1,7 +1,7 @@
 require_relative "../concepts/user/contract/create"
 
 class UsersController < ApplicationController
-  before_action :authorize, except: [:new, :create]
+  # before_action :authorize, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :correct_user?, only: [:edit, :update, :destroy]
 
@@ -31,7 +31,11 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    run User::Update::Present
+    render cell(User::Cell::Edit, @form), layout: false
   end
+  # def edit
+  # end
 
   # POST /users
   # POST /users.json
@@ -56,13 +60,21 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user = User.find(params[:id]) 
-    if @user.update(user_params)
-      redirect_to root_path, notice: 'User was successfully updated.'
-    else
-      render :edit
+    run User::Update do |result|
+      flash[:notice] = "#{result["model"].title} has been saved"
+      return redirect_to user_path(result["model"].id)
     end
+
+    render cell(User::Cell::Edit, @form), layout: false
   end
+  # def update
+  #   @user = User.find(params[:id]) 
+  #   if @user.update(user_params)
+  #     redirect_to root_path, notice: 'User was successfully updated.'
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   # DELETE /users/1
   # DELETE /users/1.json

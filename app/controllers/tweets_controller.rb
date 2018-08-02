@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
   before_action :set_tweet, only: [:show, :destroy]
   before_action :authorize
-  # before_action :correct_user?(@tweet.user_id), only: [:edit, :update, :destroy]
+  before_action :correct_user?, only: [:edit, :update, :destroy]
 
   # GET /tweets
   # GET /tweets.json
@@ -19,43 +19,25 @@ class TweetsController < ApplicationController
   def new
     run Tweet::Create::Present
   end
-  # def new
-  #   @tweet = Tweet.new
-  #   redirect_to tweets_path
-  # end
 
   # POST /tweets
   # POST /tweets.json
   #Trailblazer
   def create
 
-    if Tweet::Create.(current_user, tweet_params) 
+    if Tweet::Create.(current_user, tweet_params)
       return redirect_to tweets_path, notice: 'Tweet was successfully created.'
     end
 
-    # @tweet.errors.full_messages.each do |message|
-    #   redirect_to tweets_path, notice: message
-    # end
   end
-
-  # def create
-  #   @tweet = current_user.tweets.create(tweet_params)
-  #   if @tweet.save
-  #     redirect_to tweets_path, notice: 'Tweet was successfully created.' 
-  #   else
-  #     @tweet.errors.full_messages.each do |message|
-  #       redirect_to tweets_path, notice: message
-  #     end
-  #   end
-  # end
 
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    unless correct_user?(@tweet.user_id)
-      @tweet.destroy
-      redirect_to tweets_url, notice: 'Tweet was successfully destroyed.'
-    end
+    run Tweet::Delete
+
+    flash[:alert] = "Tweet deleted"
+    redirect_to tweets_path
   end
 
   private
@@ -68,5 +50,5 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:content)
     end
-    
+
 end

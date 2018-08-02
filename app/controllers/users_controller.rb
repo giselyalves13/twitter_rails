@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
 
     render :new
-  end 
+  end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -54,14 +54,14 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user = User.find(params[:id]) 
+    @user = User.find(params[:id])
     @user.destroy
     sign_out
-    redirect_to root_path, notice: 'User was successfully destroyed.'   
+    redirect_to root_path, notice: 'User was successfully destroyed.'
   end
 
   def tweets
-    @tweets = current_user.tweets.all 
+    @tweets = current_user.tweets.all
   end
 
   private
@@ -74,5 +74,5 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:user, :password, :password_confirmation, :user_img)
     end
-    
+
 end

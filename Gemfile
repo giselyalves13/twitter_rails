@@ -71,6 +71,7 @@ gem "cells-rails"
 gem "cells-slim"
 # gem 'reform'
 # gem 'reform-rails'
+
 group :test do
   gem "rspec-rails"
 #   gem "capybara"

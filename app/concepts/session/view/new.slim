@@ -1,0 +1,13 @@
+.row.new
+  h1 Login
+
+  = simple_form_for model do |f|
+    .row
+      .col-sm-12
+        = f.input :user, placeholder: "User", label: false
+    .row
+      .col-sm-12
+        = f.input :password, placeholder: "Password", label: false
+    .row
+      .col-sm-12
+        = f.submit 'Create User'

@@ -15,23 +15,39 @@ class TweetsController < ApplicationController
   end
 
   # GET /tweets/new
+  #Trailblazer
   def new
-    @tweet = Tweet.new
-    redirect_to tweets_path
+    run Tweet::Create::Present
   end
+  # def new
+  #   @tweet = Tweet.new
+  #   redirect_to tweets_path
+  # end
 
   # POST /tweets
   # POST /tweets.json
+  #Trailblazer
   def create
-    @tweet = current_user.tweets.create(tweet_params)
-    if @tweet.save
-      redirect_to tweets_path, notice: 'Tweet was successfully created.' 
-    else
-      @tweet.errors.full_messages.each do |message|
-        redirect_to tweets_path, notice: message
-      end
+
+    if Tweet::Create.(current_user, tweet_params) 
+      return redirect_to tweets_path, notice: 'Tweet was successfully created.'
     end
+
+    # @tweet.errors.full_messages.each do |message|
+    #   redirect_to tweets_path, notice: message
+    # end
   end
+
+  # def create
+  #   @tweet = current_user.tweets.create(tweet_params)
+  #   if @tweet.save
+  #     redirect_to tweets_path, notice: 'Tweet was successfully created.' 
+  #   else
+  #     @tweet.errors.full_messages.each do |message|
+  #       redirect_to tweets_path, notice: message
+  #     end
+  #   end
+  # end
 
   # DELETE /tweets/1
   # DELETE /tweets/1.json

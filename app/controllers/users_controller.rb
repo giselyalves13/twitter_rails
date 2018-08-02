@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       return redirect_to root_path
     end
 
-    render :new
+    render :new, notice: "Não foi possível criar o usuário."
   end
 
   # PATCH/PUT /users/1

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   #Trailblazer
   def new
     run User::Create::Present
-        render cell(User::Cell::New, @form), layout: false
+    render cell(User::Cell::New, @form), layout: false
   end
 
   # GET /users/1/edit

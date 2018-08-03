@@ -37,7 +37,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', github: 'ojab/bootsnap', require: false 
+gem 'bootsnap', github: 'ojab/bootsnap', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,6 +71,9 @@ gem "cells-rails"
 gem "cells-slim"
 # gem 'reform'
 # gem 'reform-rails'
+
+gem "factory_bot_rails", "~> 4.0"
+
 
 group :test do
   gem "rspec-rails"

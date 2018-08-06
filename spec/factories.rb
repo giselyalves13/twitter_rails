@@ -1,7 +1,7 @@
 FactoryBot.define do
 
   factory :user do
-    user "user01"
+    user "1"
     user_img "https://farm8.staticflickr.com/7292/16179003767_d07c69309e_c.jpg"
     password "1234"
     password_confirmation "1234"
@@ -9,7 +9,7 @@ FactoryBot.define do
 
   factory :tweet do
     content "bibiibi"
-    association :index_tweets_on_user_id, factory: :user, user: "zumbi"
+    association :user, factory: :user, strategy: :build
   end
 
   # factory :user do
